@@ -16,4 +16,8 @@ TouchID.prototype.checkSupport = function (successCallback, errorCallback) {
     exec(successCallback, errorCallback, "TouchID", "checkSupport", []);
 };
 
+TouchID.prototype.checkBiomety = function (successCallback, errorCallback) {
+    exec(successCallback, errorCallback, "TouchID", "checkBiometry")
+}
+
 module.exports = new TouchID();

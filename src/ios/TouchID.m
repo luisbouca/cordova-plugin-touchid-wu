@@ -104,4 +104,39 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
+- (void) checkBiometry:(CDVInvokedUrlCommand *)command;
+{
+    __block CDVPluginResult* pluginResult = nil;
+    
+    if (NSClassFromString(@"LAContext") != nil)
+    {
+        LAContext *laContext = [[LAContext alloc] init];
+        //No biometry
+        int biometryType = -1;
+        
+        if ([laContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil]) {
+            if (@available(iOS 11.0, *)) {
+                if (laContext.biometryType == LABiometryTypeFaceID) {
+                    //FaceID
+                    biometryType = 2;
+                }
+                else {
+                    //TouchID
+                    biometryType = 1;
+                }
+                
+            }
+            else {
+                //Before iOS 11 only existed TouchID
+                biometryType = 1;
+            }
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsInt:biometryType];
+        }
+        else {
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsInt:biometryType];
+        }
+    }
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
 @end

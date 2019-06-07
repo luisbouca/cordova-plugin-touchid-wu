@@ -9,5 +9,6 @@
 
 - (void) authenticate:(CDVInvokedUrlCommand*)command;
 - (void) checkSupport:(CDVInvokedUrlCommand*)command;
+- (void) checkBiometry:(CDVInvokedUrlCommand*)command;
 
 @end
