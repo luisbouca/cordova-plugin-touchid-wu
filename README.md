@@ -49,6 +49,17 @@ Although the `authenticate()` function will return an error if the user is unabl
 touchid.checkSupport(successCallback, notSupportedCallback);
 ```
 
+### Check Biometric
+
+Although, when using the `authenticate ()` function you are prompted for faceID or touchID authentication depending on the biometry of the device, you can check what kind of biometrics the device has using the `checkBiometry ()
+
+1. Callback Success (called if the device has any type of biometrics) It returns 1 If it has TouchID or 2 if it has FaceID
+2. The device does not have any kind of biometry
+
+``` 
+touchid.checkBiometry(successCallback(type), noBiometryCallback);
+```
+
 ## Platforms
 
 iOS 8+
