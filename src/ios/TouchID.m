@@ -20,9 +20,9 @@
         LAContext *laContext = [[LAContext alloc] init];
         NSError *authError = nil;
 
-        if ([laContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError])
+        if ([laContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthentication error:&authError])
         {
-            [laContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:text reply:^(BOOL success, NSError *error)
+            [laContext evaluatePolicy:LAPolicyDeviceOwnerAuthentication localizedReason:text reply:^(BOOL success, NSError *error)
              {
                  if (success)
                  {
@@ -87,7 +87,7 @@
         LAContext *laContext = [[LAContext alloc] init];
         NSError *authError = nil;
 
-        if ([laContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError])
+        if ([laContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthentication error:&authError])
         {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         }
@@ -114,7 +114,7 @@
         //No biometry
         int biometryType = -1;
         
-        if ([laContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil]) {
+        if ([laContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthentication error:nil]) {
             if (@available(iOS 11.0, *)) {
                 if (laContext.biometryType == LABiometryTypeFaceID) {
                     //FaceID
