@@ -19,10 +19,11 @@
     {
         LAContext *laContext = [[LAContext alloc] init];
         NSError *authError = nil;
+        laContext.localizedFallbackTitle = @"";
 
-        if ([laContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthentication error:&authError])
+        if ([laContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError])
         {
-            [laContext evaluatePolicy:LAPolicyDeviceOwnerAuthentication localizedReason:text reply:^(BOOL success, NSError *error)
+            [laContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:text reply:^(BOOL success, NSError *error)
              {
                  if (success)
                  {
